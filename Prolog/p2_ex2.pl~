@@ -1,0 +1,22 @@
+adauga_valoarea([], _, _, []).
+adauga_valoarea([H|T], Poz, E, [H|Rez]) :-
+    Poz > 1,
+    NewPoz is Poz - 1,
+    adauga_valoarea(T, NewPoz, E, Rez).
+
+adauga_valoarea([H|T], 1, E, [H, E|Rez]) :-
+    NewPoz is 2,
+    adauga_valoarea(T, NewPoz, E, Rez).
+
+adauga_elem_prec_in_sublista([], _, []).
+adauga_elem_prec_in_sublista([H|T], Prec, [Rz|R]) :-
+    is_list(H),
+    !,
+    adauga_valoarea(H, 1, Prec, Rz),
+    adauga_elem_prec_in_sublista(T, Prec, R).
+
+adauga_elem_prec_in_sublista([H|T], _, [H|R]) :-
+    adauga_elem_prec_in_sublista(T, H, R).
+
+adauga_precedent(Lista, Rezultat) :-
+    adauga_elem_prec_in_sublista(Lista, _, Rezultat).

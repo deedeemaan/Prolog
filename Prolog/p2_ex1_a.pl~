@@ -1,0 +1,12 @@
+aduna_liste(Lista1, Lista2, Suma) :-
+    aduna_aux(Lista1, Lista2, 0, [], SumaReversata),
+    reverse(SumaReversata, Suma).
+
+aduna_aux([], [], 0, Acumulator, Acumulator).
+aduna_aux([], [], Transport, Acumulator, [Transport|Acumulator]) :- Transport \= 0.
+
+aduna_aux([Cifra1|Rest1], [Cifra2|Rest2], Transport, Acumulator, Suma) :-
+    SumaCurenta is Cifra1 + Cifra2 + Transport,
+    CifraSuma is SumaCurenta mod 10,
+    TransportNou is SumaCurenta // 10,
+    aduna_aux(Rest1, Rest2, TransportNou, [CifraSuma|Acumulator], Suma).

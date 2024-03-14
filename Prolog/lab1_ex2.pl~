@@ -1,0 +1,6 @@
+substituie(_, _, [], []).
+substituie(Elem, NouElem, [Elem|T], [NouElem|Rezultat]) :-
+    substituie(Elem, NouElem, T, Rezultat).
+substituie(Elem, NouElem, [H|T], [H|Rezultat]) :-
+    H \= Elem,
+    substituie(Elem, NouElem, T, Rezultat).

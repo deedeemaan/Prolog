@@ -1,0 +1,23 @@
+cmmdc(X,Y,R):-
+    X>Y,
+    !,
+    NewX is X-Y,
+    cmmdc(NewX,Y,R).
+
+cmmdc(X,Y,R):-
+    X<Y,
+    !,
+    NewY is Y-X,
+    cmmdc(X,NewY,R).
+
+cmmdc(X,_,R):-
+    R is X.
+
+cmmmc(X,Y,R):-
+    cmmdc(X,Y,R1),
+    R is (X*Y) // R1.
+
+lista_cmmmc([],1):-!.
+lista_cmmmc([H|T],R):-
+    lista_cmmmc(T,Rez),
+    cmmmc(H,Rez,R).
